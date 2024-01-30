@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import logo from "../logo.svg"
 import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
-import { routes } from "../01-lazyload/router/routes";
+import { routes } from "./routes";
 
 export const Navigation = () => {
   return (
@@ -33,12 +33,19 @@ export const Navigation = () => {
           </nav>
           <Routes>
             {
-              routes.map(({path, Component}) => (
+              routes.map(({path, Component, children}) => (
                 <Route 
                   key={ path } 
                   path={ path } 
                   element={ <Component/> }
-                />
+                >
+                  {
+                    children?.map((child)=> (
+                      <Route path={child.path} element={<child.Component/>}/>
+                    ))
+                  }
+                  
+                </Route>
               ))
             }
 
