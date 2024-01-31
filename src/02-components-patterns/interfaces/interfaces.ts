@@ -6,11 +6,6 @@ export interface Product {
     img?: string
 }
 
-export interface Props {
-    children?: ReactElement | ReactElement[],
-    product: Product,
-}
-
 export interface ProductContextProps {
     counter: number,
     increaseBy: (value: number) => void
